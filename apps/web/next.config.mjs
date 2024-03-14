@@ -4,9 +4,9 @@ import createJiti from "jiti";
 import { fileURLToPath } from "node:url";
 import path from "path";
 
-const jiti = createJiti(fileURLToPath(import.meta.url));
-
-jiti("@formbricks/lib/env");
+const filePath = fileURLToPath(import.meta.url);
+const jiti = createJiti(filePath);
+const __dirname = path.dirname(filePath);
 
 /** @type {import('next').NextConfig} */
 
