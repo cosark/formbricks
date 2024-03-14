@@ -2,15 +2,15 @@ import { createId } from "@paralleldrive/cuid2";
 import { withSentryConfig } from "@sentry/nextjs";
 import createJiti from "jiti";
 import { fileURLToPath } from "node:url";
-import path from "path";
+import { dirname, join } from 'path';
 
-const jiti = createJiti(fileURLToPath(import.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-jiti("@formbricks/lib/env");
-
-/** @type {import('next').NextConfig} */
-
-function getHostname(url) {
+const nextConfig = {
+  //...
+  outputFileTracingRoot: join(__dirname, '../../'),
+  //...
+};
   const urlObj = new URL(url);
   return urlObj.hostname;
 }
