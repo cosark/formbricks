@@ -149,21 +149,21 @@ export const setPersonAttribute = async (
 
   if (result.ok) {
     // udpdate attribute in config
+    const currentConfig = config.get();
+    
     config.update({
-      environmentId: config.get().environmentId,
-      apiHost: config.get().apiHost,
-      userId: config.get().userId,
+      environmentId: currentConfig.environmentId,
+      apiHost: currentConfig.apiHost,
+      userId: currentConfig.userId,
       state: {
-        ...config.get().state,
+        ...currentConfig.state,
         attributes: {
-          ...config.get().state.attributes,
+          ...currentConfig.state.attributes,
           [key]: value.toString(),
         },
       },
-      expiresAt: config.get().expiresAt,
+      expiresAt: currentConfig.expiresAt,
     });
-    return okVoid();
-  }
 
   return err(result.error);
 };
