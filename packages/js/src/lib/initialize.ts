@@ -152,17 +152,17 @@ export const initialize = async (
 
   // update attributes in config
   if (updatedAttributes && Object.keys(updatedAttributes).length > 0) {
+    const currentConfig = config.get();
     config.update({
-      environmentId: config.get().environmentId,
-      apiHost: config.get().apiHost,
-      userId: config.get().userId,
+      environmentId: currentConfig.environmentId,
+      apiHost: currentConfig.apiHost,
+      userId: currentConfig.userId,
       state: {
-        ...config.get().state,
-        attributes: { ...config.get().state.attributes, ...c.attributes },
+        ...currentConfig.state,
+        attributes: { ...currentConfig.state.attributes, ...c.attributes },
       },
-      expiresAt: config.get().expiresAt,
+      expiresAt: currentConfig.expiresAt,
     });
-  }
 
   logger.debug("Adding event listeners");
   addEventListeners();
